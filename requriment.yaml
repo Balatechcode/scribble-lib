@@ -1,0 +1,15 @@
+
+---
+
+## 🛠️ Requirements
+
+> ❗ Must be run from a local or remote server — not from `file:///`
+
+### Option 1: Using VS Code Live Server (Recommended)
+1. Install [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+2. Right-click `index.html` → "Open with Live Server"
+
+### Option 2: Use Python HTTP Server
+
+```bash
+python -m http.server

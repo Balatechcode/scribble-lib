@@ -1,0 +1,3144 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <meta name="description" content="Add beautiful animated hand-drawn SVG underline effects to your text with ScribbleFX. Lightweight JavaScript library with GSAP animations, custom styles, and easy integration.">
+      <meta name="theme-color" content="#ffffff">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="robots" content="">
+
+      <!-- Alpine.js - Load first -->
+      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js"></script>
+      
+      <!-- Font Links -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+      <title>ScribbleFX - Animated Hand-Drawn SVG Underlines for JavaScript | GSAP Powered Text Effects</title>
+      <!-- SEO Description -->
+      <meta name="description" content="Add beautiful animated hand-drawn SVG underline effects to your text with ScribbleFX. Lightweight JavaScript library with GSAP animations, custom styles, and easy integration.">
+
+      <!-- Performance optimization: Preload critical resources -->
+      <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+      
+      <!-- Core CSS and Scripts -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.45.1/apexcharts.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+      
+      <!-- Project-specific styles -->
+      <style>
+        /* Base styles */
+        :root {
+          --primary-color: #0891b2;
+          --secondary-color: #64748b;
+          --accent-color: ;
+        }
+
+        /* Strict no-scrollbar rules */
+        * {
+          -ms-overflow-style: none !important;  /* IE and Edge */
+          scrollbar-width: none !important;     /* Firefox */
+        }
+        *::-webkit-scrollbar {
+          display: none !important;             /* Chrome, Safari and Opera */
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+          font-family: Inter, Inter, system-ui, sans-serif;
+        }
+        body {
+          font-family: DM Sans, Inter, system-ui, sans-serif;
+        }
+
+        /* Interactive elements */
+        .interactive-element {
+          transition: all 0.3s ease;
+        }
+        .interactive-element:hover {
+          transform: translateY(-2px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .fade-in {
+          animation: fadeIn 0.5s ease-in-out;
+        }
+      </style>
+
+      <!-- Dynamic Meta Tags -->
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <meta name="robots" content="">
+      <meta property="og:title" content="">
+      <meta property="og:description" content="">
+      <meta property="og:image" content="">
+      <meta property="og:type" content="website">
+      <meta property="og:locale" content="en_US">
+      <meta property="og:site_name" content="ScribbleFX">
+      
+      <!-- Favicon -->
+      <link rel="icon" type="image/x-icon" href="">
+
+      <!-- Header Scripts -->
+      <script id="header-scripts">
+        // This script tag will be replaced with actual scripts.head content
+        if (window.scripts && window.scripts.head) {
+          document.getElementById('header-scripts').outerHTML = window.scripts.head;
+        }
+      </script>
+
+      <!-- Project Configuration -->
+      <script>
+        window.projectConfig = {
+          name: 'ScribbleFX',
+          type: '',
+          settings: {
+            colors: {
+              primary: '#0891b2',
+              secondary: '#64748b',
+              accent: ''
+            },
+            fonts: {
+              primary: 'Inter',
+              secondary: 'DM Sans'
+            }
+          }
+        };
+      </script>
+   <style>
+        [data-section-id] {
+          display: none;
+        }
+        [data-section-id]:first-child {
+          display: block;
+        }
+      </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+</head>
+   <body class="antialiased text-gray-800 min-h-screen flex flex-col">
+      <!-- Skip to main content link for accessibility -->
+      <a href="#main-content" 
+         class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black">
+         Skip to main content
+      </a>
+
+      <!-- Main content area -->
+      <main id="main-content" class="flex-1 relative h-full">
+        <mountpoint><div id="RolloutPageContent"><div id="root">
+  <header id="header" class="relative">
+    <nav class="bg-white border-b border-gray-200 px-4 lg:px-6 py-4">
+      <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+        <!-- Logo -->
+        <a href="#" class="flex items-center">
+          <span class="self-center text-xl font-semibold whitespace-nowrap text-gray-900">ScribbleFX</span>
+        </a>
+        
+        <!-- Mobile menu button -->
+        <button 
+          id="mobile-menu-button" 
+          type="button" 
+          class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        
+        <!-- Desktop navigation -->
+        <div class="hidden md:flex md:w-auto md:order-1">
+          <ul class="flex flex-col mt-4 font-medium md:flex-row md:space-x-8 md:mt-0">
+              <li>
+                <a href="#features" class="block py-2 pr-4 pl-3 text-gray-700 hover:text-orange-500 transition-colors duration-300 md:p-0">Features</a>
+              </li>
+              <li>
+                <a href="#demo" class="block py-2 pr-4 pl-3 text-gray-700 hover:text-orange-500 transition-colors duration-300 md:p-0">Demo</a>
+              </li>
+              <li>
+                <a href="#code-examples" class="block py-2 pr-4 pl-3 text-gray-700 hover:text-orange-500 transition-colors duration-300 md:p-0">Code</a>
+              </li>
+              <li>
+                <a href="#installation" class="block py-2 pr-4 pl-3 text-gray-700 hover:text-orange-500 transition-colors duration-300 md:p-0">Install</a>
+              </li>
+              <li>
+                <a href="#docs" class="block py-2 pr-4 pl-3 text-gray-700 hover:text-orange-500 transition-colors duration-300 md:p-0">Docs</a>
+              </li>
+              <li>
+                <a href="#github-stats" class="block py-2 pr-4 pl-3 text-gray-700 hover:text-orange-500 transition-colors duration-300 md:p-0">GitHub</a>
+              </li>
+          </ul>
+        </div>
+        
+        <!-- Mobile navigation -->
+        <div id="mobile-menu" class="md:hidden hidden w-full mt-4">
+          <ul class="flex flex-col space-y-3 pb-4">
+              <li>
+                <a href="#features" class="block py-2 px-3 text-gray-700 hover:text-orange-500 transition-colors duration-300">Features</a>
+              </li>
+              <li>
+                <a href="#demo" class="block py-2 px-3 text-gray-700 hover:text-orange-500 transition-colors duration-300">Demo</a>
+              </li>
+              <li>
+                <a href="#code-examples" class="block py-2 px-3 text-gray-700 hover:text-orange-500 transition-colors duration-300">Code</a>
+              </li>
+              <li>
+                <a href="#installation" class="block py-2 px-3 text-gray-700 hover:text-orange-500 transition-colors duration-300">Install</a>
+              </li>
+              <li>
+                <a href="#docs" class="block py-2 px-3 text-gray-700 hover:text-orange-500 transition-colors duration-300">Docs</a>
+              </li>
+              <li>
+                <a href="#github-stats" class="block py-2 px-3 text-gray-700 hover:text-orange-500 transition-colors duration-300">GitHub</a>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      // Mobile menu toggle functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener('click', function() {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            
+            // Toggle menu visibility
+            mobileMenu.classList.toggle('hidden');
+            
+            // Update aria-expanded attribute
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            
+            // Update button icon
+            const svg = mobileMenuButton.querySelector('svg');
+            if (!isExpanded) {
+              // Change to X icon
+              svg.innerHTML = '<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>';
+            } else {
+              // Change back to hamburger icon
+              svg.innerHTML = '<path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>';
+            }
+          });
+          
+          // Close mobile menu when clicking on a link
+          const mobileLinks = mobileMenu.querySelectorAll('a');
+          mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+              mobileMenu.classList.add('hidden');
+              mobileMenuButton.setAttribute('aria-expanded', 'false');
+              
+              // Reset button icon
+              const svg = mobileMenuButton.querySelector('svg');
+              svg.innerHTML = '<path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>';
+            });
+          });
+          
+          // Close mobile menu when pressing Escape key
+          document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+              mobileMenu.classList.add('hidden');
+              mobileMenuButton.setAttribute('aria-expanded', 'false');
+              
+              // Reset button icon
+              const svg = mobileMenuButton.querySelector('svg');
+              svg.innerHTML = '<path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>';
+            }
+          });
+        }
+      });
+    </script>
+  </header>
+</div>
+<div id="root">
+  <section id="hero" class="relative bg-neutral-900 text-white min-h-screen flex items-center overflow-hidden">
+    <!-- Background Images -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1506365064873-667adaf59c0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8YW5pbWF0ZWQlMjUyMFNWRyUyNTIwdW5kZXJsaW5lcyUyNTIwZGFyayUyNTIwbW9kZXJuJTI1MjBpbGx1c3RyYXRpb258ZW58MXwwfHx8MTc0OTU0NDU3Mnww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Animated plane flying upside down"
+        class="absolute top-0 right-0 w-1/2 h-full object-cover opacity-20"
+        loading="eager"
+      />
+      <img 
+        src="https://images.unsplash.com/photo-1585750130716-42e238075a88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8YW5pbWF0ZWQlMjUyMFNWRyUyNTIwdW5kZXJsaW5lcyUyNTIwZGFyayUyNTIwbW9kZXJuJTI1MjBpbGx1c3RyYXRpb258ZW58MXwwfHx8MTc0OTU0NDU3Mnww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Modern artwork by Steven Harrington"
+        class="absolute bottom-0 left-0 w-1/3 h-2/3 object-cover opacity-15"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-neutral-900 via-neutral-900/90 to-neutral-900/70"></div>
+    </div>
+
+    <!-- Content Container -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Left Column - Main Content -->
+        <div class="space-y-8">
+          <!-- Badge -->
+          <div class="inline-flex items-center px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20">
+            <span class="text-orange-400 text-sm font-medium">✨ New Library Release</span>
+          </div>
+
+          <!-- Main Headline -->
+          <div class="space-y-4">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              Animated
+              <span class="relative inline-block">
+                <span class="text-orange-500">Underlines</span>
+                <div class="absolute bottom-0 left-0 w-full h-1 bg-orange-500 transform scale-x-0 origin-left transition-transform duration-1000 animate-pulse"></div>
+              </span>
+              <br />Made Simple
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 max-w-2xl">
+              Add stunning hand-drawn SVG underline animations to any text with just one line of JavaScript.
+            </p>
+          </div>
+
+          <!-- Feature Pills -->
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-neutral-800 rounded-full text-sm border border-neutral-700">GSAP Powered</span>
+            <span class="px-4 py-2 bg-neutral-800 rounded-full text-sm border border-neutral-700">Lightweight</span>
+            <span class="px-4 py-2 bg-neutral-800 rounded-full text-sm border border-neutral-700">Easy Setup</span>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <button 
+              id="demo-btn"
+              class="group px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25"
+            >
+              <span class="flex items-center justify-center gap-2">
+                Try Live Demo
+                <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+              </span>
+            </button>
+            
+            <button 
+              id="docs-btn"
+              class="px-8 py-4 bg-transparent border-2 border-neutral-700 hover:border-orange-500 text-white font-semibold rounded-lg transition-all duration-300 hover:bg-orange-500/10"
+            >
+              View Documentation
+            </button>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="flex items-center gap-8 pt-8 border-t border-neutral-800">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-orange-500">5KB</div>
+              <div class="text-sm text-gray-400">Minified</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-orange-500">12+</div>
+              <div class="text-sm text-gray-400">Animations</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-orange-500">0</div>
+              <div class="text-sm text-gray-400">Dependencies</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Code Preview -->
+        <div class="relative">
+          <div class="bg-neutral-800 rounded-xl border border-neutral-700 overflow-hidden shadow-2xl">
+            <!-- Terminal Header -->
+            <div class="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-neutral-700">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              <span class="ml-4 text-sm text-gray-400">script.js</span>
+            </div>
+            
+            <!-- Code Content -->
+            <div class="p-6 font-mono text-sm">
+              <div class="space-y-2">
+                <div class="text-gray-500">// Import ScribbleFX</div>
+                <div class="text-blue-400">import</div>
+                <span class="text-white"> ScribbleFX </span>
+                <span class="text-blue-400">from</span>
+                <span class="text-green-400"> 'scribblefx'</span>
+                <span class="text-white">;</span>
+                
+                <div class="pt-4 text-gray-500">// Add animated underline</div>
+                <div class="text-yellow-400">ScribbleFX</div>
+                <span class="text-white">.</span>
+                <span class="text-blue-400">underline</span>
+                <span class="text-white">(</span>
+                <span class="text-green-400">'.title'</span>
+                <span class="text-white">, {</span>
+                
+                <div class="pl-4 space-y-1">
+                  <div>
+                    <span class="text-orange-400">style</span>
+                    <span class="text-white">: </span>
+                    <span class="text-green-400">'scribble'</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">duration</span>
+                    <span class="text-white">: </span>
+                    <span class="text-purple-400">1.5</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">color</span>
+                    <span class="text-white">: </span>
+                    <span class="text-green-400">'#f97316'</span>
+                  </div>
+                </div>
+                
+                <div class="text-white">});</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Elements -->
+          <div class="absolute -top-4 -right-4 w-20 h-20 bg-orange-500/20 rounded-full blur-xl animate-pulse"></div>
+          <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-cyan-500/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+      <div class="flex flex-col items-center gap-2 text-gray-400">
+        <span class="text-sm">Scroll to explore</span>
+        <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Modal -->
+    <div id="demo-modal" class="fixed inset-0 z-50 hidden">
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="demo-backdrop"></div>
+      
+      <!-- Modal Content -->
+      <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
+        <div class="bg-neutral-900 rounded-xl border border-neutral-700 max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <!-- Modal Header -->
+          <div class="flex items-center justify-between p-6 border-b border-neutral-700">
+            <h3 class="text-xl font-semibold text-white">Live Demo</h3>
+            <button 
+              id="close-demo-modal"
+              class="text-gray-400 hover:text-white transition-colors duration-200"
+              aria-label="Close modal"
+            >
+              <span class="text-2xl">&times;</span>
+            </button>
+          </div>
+          
+          <!-- Modal Body -->
+          <div class="p-6">
+            <div class="space-y-6">
+              <div class="text-center">
+                <h4 class="text-2xl font-bold text-white mb-4">
+                  Try different <span class="text-orange-500 relative">underline styles</span>
+                </h4>
+                <p class="text-gray-300">Click the buttons below to see ScribbleFX in action</p>
+              </div>
+              
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button class="demo-style-btn px-4 py-2 bg-neutral-800 hover:bg-orange-500 text-white rounded-lg transition-colors duration-300" data-style="scribble">
+                  Scribble
+                </button>
+                <button class="demo-style-btn px-4 py-2 bg-neutral-800 hover:bg-orange-500 text-white rounded-lg transition-colors duration-300" data-style="wave">
+                  Wave
+                </button>
+                <button class="demo-style-btn px-4 py-2 bg-neutral-800 hover:bg-orange-500 text-white rounded-lg transition-colors duration-300" data-style="zigzag">
+                  Zigzag
+                </button>
+                <button class="demo-style-btn px-4 py-2 bg-neutral-800 hover:bg-orange-500 text-white rounded-lg transition-colors duration-300" data-style="circle">
+                  Circle
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Demo Modal Functionality
+        const demoBtn = document.getElementById('demo-btn');
+        const demoModal = document.getElementById('demo-modal');
+        const closeDemoModal = document.getElementById('close-demo-modal');
+        const demoBackdrop = document.getElementById('demo-backdrop');
+        
+        // Open modal
+        demoBtn.addEventListener('click', function() {
+          demoModal.classList.remove('hidden');
+          demoModal.setAttribute('aria-modal', 'true');
+          document.body.style.overflow = 'hidden';
+          closeDemoModal.focus();
+        });
+        
+        // Close modal function
+        function closeModal() {
+          demoModal.classList.add('hidden');
+          demoModal.setAttribute('aria-modal', 'false');
+          document.body.style.overflow = '';
+          demoBtn.focus();
+        }
+        
+        // Close modal events
+        closeDemoModal.addEventListener('click', closeModal);
+        demoBackdrop.addEventListener('click', closeModal);
+        
+        // ESC key to close
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' && !demoModal.classList.contains('hidden')) {
+            closeModal();
+          }
+        });
+        
+        // Focus trap
+        const focusableElements = demoModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstFocusable = focusableElements[0];
+        const lastFocusable = focusableElements[focusableElements.length - 1];
+        
+        demoModal.addEventListener('keydown', function(event) {
+          if (event.key === 'Tab') {
+            if (event.shiftKey) {
+              if (document.activeElement === firstFocusable) {
+                lastFocusable.focus();
+                event.preventDefault();
+              }
+            } else {
+              if (document.activeElement === lastFocusable) {
+                firstFocusable.focus();
+                event.preventDefault();
+              }
+            }
+          }
+        });
+        
+        // Demo style buttons
+        const demoStyleBtns = document.querySelectorAll('.demo-style-btn');
+        demoStyleBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Remove active state from all buttons
+            demoStyleBtns.forEach(b => b.classList.remove('bg-orange-500'));
+            // Add active state to clicked button
+            this.classList.add('bg-orange-500');
+            
+            // Simulate animation effect
+            const style = this.dataset.style;
+            console.log(`Applying ${style} animation`);
+          });
+        });
+        
+        // Docs button smooth scroll
+        const docsBtn = document.getElementById('docs-btn');
+        docsBtn.addEventListener('click', function() {
+          const docsSection = document.getElementById('docs');
+          if (docsSection) {
+            docsSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+        
+        // Animate underline on load
+        setTimeout(() => {
+          const underline = document.querySelector('.absolute.bottom-0.left-0.w-full.h-1');
+          if (underline) {
+            underline.classList.remove('scale-x-0');
+            underline.classList.add('scale-x-100');
+          }
+        }, 1000);
+      });
+    </script>
+  </section>
+</div>
+<div id="root">
+  <section id="features" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          Features
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Everything you need to create stunning animated underlines with minimal effort and maximum impact.
+        </p>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid lg:grid-cols-3 gap-8 mb-20">
+        
+        <!-- Feature 1 - Custom SVG Styles -->
+        <div class="group relative bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:border-orange-300 transition-all duration-300 hover:shadow-lg">
+          <div class="relative h-48 mb-6 rounded-xl overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1506365064873-667adaf59c0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8YW5pbWF0ZWQlMjUyMFNWRyUyNTIwdW5kZXJsaW5lcyUyNTIwaW50ZXJhY3RpdmUlMjUyMGRhcmslMjUyMG1vZGVybnxlbnwxfDB8fHwxNzQ5NTQ0NjcyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="Animated plane flying upside down representing dynamic SVG animations"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <span class="text-orange-600 text-xl">✏️</span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">Custom SVG Styles</h3>
+            </div>
+            
+            <p class="text-gray-600">
+              Choose from 12+ hand-crafted underline styles including scribble, wave, zigzag, and circle effects.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 bg-orange-100 text-orange-700 text-sm rounded-full">Scribble</span>
+              <span class="px-3 py-1 bg-orange-100 text-orange-700 text-sm rounded-full">Wave</span>
+              <span class="px-3 py-1 bg-orange-100 text-orange-700 text-sm rounded-full">Zigzag</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 - GSAP Powered -->
+        <div class="group relative bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:border-cyan-300 transition-all duration-300 hover:shadow-lg">
+          <div class="relative h-48 mb-6 rounded-xl overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1585750130716-42e238075a88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8YW5pbWF0ZWQlMjUyMFNWRyUyNTIwdW5kZXJsaW5lcyUyNTIwaW50ZXJhY3RpdmUlMjUyMGRhcmslMjUyMG1vZGVybnxlbnwxfDB8fHwxNzQ5NTQ0NjcyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="Modern artwork by Steven Harrington showcasing smooth animations"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
+                <span class="text-cyan-600 text-xl">⚡</span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">GSAP Powered</h3>
+            </div>
+            
+            <p class="text-gray-600">
+              Smooth, performant animations powered by GSAP with draw, glow, and bounce effects.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 bg-cyan-100 text-cyan-700 text-sm rounded-full">Draw</span>
+              <span class="px-3 py-1 bg-cyan-100 text-cyan-700 text-sm rounded-full">Glow</span>
+              <span class="px-3 py-1 bg-cyan-100 text-cyan-700 text-sm rounded-full">Bounce</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3 - Easy Integration -->
+        <div class="group relative bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-lg">
+          <div class="relative h-48 mb-6 rounded-xl overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1493351962959-98c0733fcea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8M3x8YW5pbWF0ZWQlMjUyMFNWRyUyNTIwdW5kZXJsaW5lcyUyNTIwaW50ZXJhY3RpdmUlMjUyMGRhcmslMjUyMG1vZGVybnxlbnwxfDB8fHwxNzQ5NTQ0NjcyfDA&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="Developer workspace showing easy integration process"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <span class="text-purple-600 text-xl">🚀</span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">Easy Integration</h3>
+            </div>
+            
+            <p class="text-gray-600">
+              Works with any HTML element. Just add one line of JavaScript and you're ready to go.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm rounded-full">5KB</span>
+              <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm rounded-full">Zero Config</span>
+              <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm rounded-full">Universal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Demo Section -->
+      <div class="bg-neutral-900 rounded-3xl p-8 md:p-12">
+        <div class="text-center mb-12">
+          <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+            Try It Live
+          </h3>
+          <p class="text-gray-300 text-lg">
+            Click any style below to see ScribbleFX in action
+          </p>
+        </div>
+
+        <!-- Demo Text -->
+        <div class="text-center mb-12">
+          <h4 id="demo-text" class="text-4xl md:text-6xl font-bold text-white relative inline-block">
+            Beautiful Text
+          </h4>
+        </div>
+
+        <!-- Style Buttons -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+          <button 
+            class="demo-btn px-6 py-4 bg-neutral-800 hover:bg-orange-500 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 border border-neutral-700 hover:border-orange-500"
+            data-style="scribble"
+            data-color="#f97316"
+          >
+            Scribble
+          </button>
+          
+          <button 
+            class="demo-btn px-6 py-4 bg-neutral-800 hover:bg-cyan-500 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 border border-neutral-700 hover:border-cyan-500"
+            data-style="wave"
+            data-color="#06b6d4"
+          >
+            Wave
+          </button>
+          
+          <button 
+            class="demo-btn px-6 py-4 bg-neutral-800 hover:bg-purple-500 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 border border-neutral-700 hover:border-purple-500"
+            data-style="zigzag"
+            data-color="#8b5cf6"
+          >
+            Zigzag
+          </button>
+          
+          <button 
+            class="demo-btn px-6 py-4 bg-neutral-800 hover:bg-green-500 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-105 border border-neutral-700 hover:border-green-500"
+            data-style="circle"
+            data-color="#10b981"
+          >
+            Circle
+          </button>
+        </div>
+
+        <!-- Code Preview -->
+        <div class="mt-12 bg-neutral-800 rounded-xl border border-neutral-700 overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-3 bg-neutral-900 border-b border-neutral-700">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <span class="ml-4 text-sm text-gray-400">demo.js</span>
+          </div>
+          
+          <div class="p-6 font-mono text-sm">
+            <div id="code-display" class="space-y-2">
+              <div class="text-yellow-400">ScribbleFX</div>
+              <span class="text-white">.</span>
+              <span class="text-blue-400">underline</span>
+              <span class="text-white">(</span>
+              <span class="text-green-400">'#demo-text'</span>
+              <span class="text-white">, {</span>
+              
+              <div class="pl-4 space-y-1">
+                <div>
+                  <span class="text-orange-400">style</span>
+                  <span class="text-white">: </span>
+                  <span id="style-value" class="text-green-400">'scribble'</span>
+                  <span class="text-white">,</span>
+                </div>
+                <div>
+                  <span class="text-orange-400">color</span>
+                  <span class="text-white">: </span>
+                  <span id="color-value" class="text-green-400">'#f97316'</span>
+                  <span class="text-white">,</span>
+                </div>
+                <div>
+                  <span class="text-orange-400">duration</span>
+                  <span class="text-white">: </span>
+                  <span class="text-purple-400">1.5</span>
+                </div>
+              </div>
+              
+              <div class="text-white">});</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const demoBtns = document.querySelectorAll('.demo-btn');
+        const demoText = document.getElementById('demo-text');
+        const styleValue = document.getElementById('style-value');
+        const colorValue = document.getElementById('color-value');
+        
+        // Remove any existing underlines
+        function clearUnderlines() {
+          const existingUnderlines = demoText.querySelectorAll('.scribble-underline');
+          existingUnderlines.forEach(el => el.remove());
+        }
+        
+        // Create animated underline
+        function createUnderline(style, color) {
+          clearUnderlines();
+          
+          const underline = document.createElement('div');
+          underline.className = 'scribble-underline absolute bottom-0 left-0 w-full h-1 transform scale-x-0 origin-left transition-transform duration-1000';
+          underline.style.backgroundColor = color;
+          
+          // Add style-specific effects
+          switch(style) {
+            case 'wave':
+              underline.style.borderRadius = '50px';
+              underline.style.height = '3px';
+              break;
+            case 'zigzag':
+              underline.style.clipPath = 'polygon(0 0, 10% 100%, 20% 0, 30% 100%, 40% 0, 50% 100%, 60% 0, 70% 100%, 80% 0, 90% 100%, 100% 0, 100% 100%, 0 100%)';
+              underline.style.height = '4px';
+              break;
+            case 'circle':
+              underline.style.borderRadius = '50%';
+              underline.style.height = '8px';
+              underline.style.top = '50%';
+              underline.style.transform = 'translateY(-50%) scale(0)';
+              break;
+            default: // scribble
+              underline.style.height = '2px';
+              underline.style.borderRadius = '1px';
+          }
+          
+          demoText.appendChild(underline);
+          
+          // Animate in
+          setTimeout(() => {
+            if (style === 'circle') {
+              underline.style.transform = 'translateY(-50%) scale(1)';
+            } else {
+              underline.style.transform = 'scale-x-1';
+              underline.classList.remove('scale-x-0');
+              underline.classList.add('scale-x-100');
+            }
+          }, 100);
+        }
+        
+        // Handle demo button clicks
+        demoBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Remove active state from all buttons
+            demoBtns.forEach(b => {
+              b.classList.remove('bg-orange-500', 'bg-cyan-500', 'bg-purple-500', 'bg-green-500');
+              b.classList.add('bg-neutral-800');
+            });
+            
+            // Add active state to clicked button
+            const style = this.dataset.style;
+            const color = this.dataset.color;
+            
+            switch(style) {
+              case 'wave':
+                this.classList.remove('bg-neutral-800');
+                this.classList.add('bg-cyan-500');
+                break;
+              case 'zigzag':
+                this.classList.remove('bg-neutral-800');
+                this.classList.add('bg-purple-500');
+                break;
+              case 'circle':
+                this.classList.remove('bg-neutral-800');
+                this.classList.add('bg-green-500');
+                break;
+              default:
+                this.classList.remove('bg-neutral-800');
+                this.classList.add('bg-orange-500');
+            }
+            
+            // Update code display
+            styleValue.textContent = `'${style}'`;
+            colorValue.textContent = `'${color}'`;
+            
+            // Create underline animation
+            createUnderline(style, color);
+          });
+        });
+        
+        // Initialize with scribble style
+        setTimeout(() => {
+          demoBtns[0].click();
+        }, 500);
+      });
+    </script>
+  </section>
+</div>
+<div id="root">
+  <section id="demo" class="py-20 bg-gray-50 relative overflow-hidden">
+    <!-- Background Images -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1506365064873-667adaf59c0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8YW5pbWF0ZWQlMjUyMFNWRyUyNTIwdW5kZXJsaW5lcyUyNTIwaW50ZXJhY3RpdmUlMjUyMGRhcmslMjUyMGdsYXNzbW9ycGhpc218ZW58MXwwfHx8MTc0OTU0NDc0MHww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Animated plane flying upside down"
+        class="absolute top-0 right-0 w-1/3 h-1/2 object-cover opacity-5"
+        loading="lazy"
+      />
+      <img 
+        src="https://images.unsplash.com/photo-1585750130716-42e238075a88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8YW5pbWF0ZWQlMjUyMFNWRyUyNTIwdW5kZXJsaW5lcyUyNTIwaW50ZXJhY3RpdmUlMjUyMGRhcmslMjUyMGdsYXNzbW9ycGhpc218ZW58MXwwfHx8MTc0OTU0NDc0MHww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Modern artwork by Steven Harrington"
+        class="absolute bottom-0 left-0 w-1/4 h-1/3 object-cover opacity-5"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          Demo
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Experience the power of ScribbleFX with our interactive playground. Test different styles and see the magic happen.
+        </p>
+      </div>
+
+      <!-- Main Demo Container -->
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        
+        <!-- Left Column - Interactive Demo -->
+        <div class="space-y-8">
+          <!-- Demo Playground -->
+          <div class="bg-white rounded-2xl p-8 border border-gray-200 backdrop-blur-sm bg-white/80">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Interactive Playground</h3>
+            
+            <!-- Demo Text Area -->
+            <div class="bg-neutral-900 rounded-xl p-8 mb-6 text-center">
+              <h4 id="playground-text" class="text-3xl md:text-4xl font-bold text-white relative inline-block">
+                ScribbleFX Magic
+              </h4>
+            </div>
+
+            <!-- Style Controls -->
+            <div class="space-y-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-3">Animation Style</label>
+                <div class="grid grid-cols-2 gap-3">
+                  <button class="style-btn px-4 py-3 bg-gray-100 hover:bg-orange-100 text-gray-700 hover:text-orange-700 rounded-lg transition-all duration-300 border border-gray-200 hover:border-orange-300" data-style="scribble">
+                    Scribble
+                  </button>
+                  <button class="style-btn px-4 py-3 bg-gray-100 hover:bg-cyan-100 text-gray-700 hover:text-cyan-700 rounded-lg transition-all duration-300 border border-gray-200 hover:border-cyan-300" data-style="wave">
+                    Wave
+                  </button>
+                  <button class="style-btn px-4 py-3 bg-gray-100 hover:bg-purple-100 text-gray-700 hover:text-purple-700 rounded-lg transition-all duration-300 border border-gray-200 hover:border-purple-300" data-style="zigzag">
+                    Zigzag
+                  </button>
+                  <button class="style-btn px-4 py-3 bg-gray-100 hover:bg-green-100 text-gray-700 hover:text-green-700 rounded-lg transition-all duration-300 border border-gray-200 hover:border-green-300" data-style="circle">
+                    Circle
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-3">Animation Type</label>
+                <div class="grid grid-cols-3 gap-3">
+                  <button class="anim-btn px-4 py-3 bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-all duration-300 border border-gray-200 hover:border-blue-300" data-animation="draw">
+                    Draw
+                  </button>
+                  <button class="anim-btn px-4 py-3 bg-gray-100 hover:bg-yellow-100 text-gray-700 hover:text-yellow-700 rounded-lg transition-all duration-300 border border-gray-200 hover:border-yellow-300" data-animation="glow">
+                    Glow
+                  </button>
+                  <button class="anim-btn px-4 py-3 bg-gray-100 hover:bg-pink-100 text-gray-700 hover:text-pink-700 rounded-lg transition-all duration-300 border border-gray-200 hover:border-pink-300" data-animation="bounce">
+                    Bounce
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-3">Duration</label>
+                <input 
+                  type="range" 
+                  id="duration-slider" 
+                  min="0.5" 
+                  max="3" 
+                  step="0.1" 
+                  value="1.5" 
+                  class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                />
+                <div class="flex justify-between text-sm text-gray-500 mt-1">
+                  <span>0.5s</span>
+                  <span id="duration-value">1.5s</span>
+                  <span>3.0s</span>
+                </div>
+              </div>
+
+              <button 
+                id="play-animation" 
+                class="w-full px-6 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
+                Play Animation
+              </button>
+            </div>
+          </div>
+
+          <!-- Preview Gallery -->
+          <div class="bg-white rounded-2xl p-8 border border-gray-200 backdrop-blur-sm bg-white/80">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">Style Gallery</h3>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative h-32 rounded-lg overflow-hidden border border-gray-200">
+                <img 
+                  src="https://images.unsplash.com/photo-1493351962959-98c0733fcea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8M3x8YW5pbWF0ZWQlMjUyMFNWRyUyNTIwdW5kZXJsaW5lcyUyNTIwaW50ZXJhY3RpdmUlMjUyMGRhcmslMjUyMGdsYXNzbW9ycGhpc218ZW58MXwwfHx8MTc0OTU0NDc0MHww&ixlib=rb-4.1.0&q=80&w=1080"
+                  alt="Developer workspace showing code examples"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                  <span class="text-white text-sm font-medium p-3">Code Examples</span>
+                </div>
+              </div>
+              
+              <div class="bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg p-4 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-orange-700 mb-1">12+</div>
+                  <div class="text-sm text-orange-600">Styles</div>
+                </div>
+              </div>
+              
+              <div class="bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-lg p-4 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-cyan-700 mb-1">3</div>
+                  <div class="text-sm text-cyan-600">Animations</div>
+                </div>
+              </div>
+              
+              <div class="bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg p-4 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-purple-700 mb-1">5KB</div>
+                  <div class="text-sm text-purple-600">Lightweight</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Code Output -->
+        <div class="space-y-8">
+          <!-- Generated Code -->
+          <div class="bg-neutral-900 rounded-2xl border border-neutral-700 overflow-hidden">
+            <div class="flex items-center gap-2 px-4 py-3 bg-neutral-800 border-b border-neutral-700">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              <span class="ml-4 text-sm text-gray-400">generated-code.js</span>
+            </div>
+            
+            <div class="p-6 font-mono text-sm">
+              <div id="generated-code" class="space-y-2">
+                <div class="text-gray-500">// Generated ScribbleFX code</div>
+                <div class="text-yellow-400">ScribbleFX</div>
+                <span class="text-white">.</span>
+                <span class="text-blue-400">underline</span>
+                <span class="text-white">(</span>
+                <span class="text-green-400">'#playground-text'</span>
+                <span class="text-white">, {</span>
+                
+                <div class="pl-4 space-y-1">
+                  <div>
+                    <span class="text-orange-400">style</span>
+                    <span class="text-white">: </span>
+                    <span id="code-style" class="text-green-400">'scribble'</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">animation</span>
+                    <span class="text-white">: </span>
+                    <span id="code-animation" class="text-green-400">'draw'</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">duration</span>
+                    <span class="text-white">: </span>
+                    <span id="code-duration" class="text-purple-400">1.5</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">color</span>
+                    <span class="text-white">: </span>
+                    <span id="code-color" class="text-green-400">'#f97316'</span>
+                  </div>
+                </div>
+                
+                <div class="text-white">});</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Copy Code Button -->
+          <button 
+            id="copy-code" 
+            class="w-full px-6 py-4 bg-neutral-800 hover:bg-neutral-700 text-white font-medium rounded-lg transition-all duration-300 border border-neutral-600 hover:border-neutral-500"
+          >
+            Copy Code to Clipboard
+          </button>
+
+          <!-- Quick Stats -->
+          <div class="bg-white rounded-2xl p-6 border border-gray-200 backdrop-blur-sm bg-white/80">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Performance Stats</h3>
+            
+            <div class="space-y-4">
+              <div class="flex justify-between items-center">
+                <span class="text-gray-600">Bundle Size</span>
+                <span class="font-semibold text-gray-900">5.2KB gzipped</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-600">Load Time</span>
+                <span class="font-semibold text-gray-900">&lt; 50ms</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-600">Browser Support</span>
+                <span class="font-semibold text-gray-900">IE11+</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-600">Dependencies</span>
+                <span class="font-semibold text-gray-900">GSAP only</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const playgroundText = document.getElementById('playground-text');
+        const styleBtns = document.querySelectorAll('.style-btn');
+        const animBtns = document.querySelectorAll('.anim-btn');
+        const durationSlider = document.getElementById('duration-slider');
+        const durationValue = document.getElementById('duration-value');
+        const playButton = document.getElementById('play-animation');
+        const copyButton = document.getElementById('copy-code');
+        
+        // Code display elements
+        const codeStyle = document.getElementById('code-style');
+        const codeAnimation = document.getElementById('code-animation');
+        const codeDuration = document.getElementById('code-duration');
+        const codeColor = document.getElementById('code-color');
+        
+        let currentStyle = 'scribble';
+        let currentAnimation = 'draw';
+        let currentDuration = 1.5;
+        let currentColor = '#f97316';
+        
+        // Style color mapping
+        const styleColors = {
+          scribble: '#f97316',
+          wave: '#06b6d4',
+          zigzag: '#8b5cf6',
+          circle: '#10b981'
+        };
+        
+        // Update duration display
+        durationSlider.addEventListener('input', function() {
+          currentDuration = parseFloat(this.value);
+          durationValue.textContent = currentDuration + 's';
+          codeDuration.textContent = currentDuration;
+        });
+        
+        // Style button handlers
+        styleBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Remove active state from all style buttons
+            styleBtns.forEach(b => {
+              b.classList.remove('bg-orange-100', 'bg-cyan-100', 'bg-purple-100', 'bg-green-100');
+              b.classList.remove('text-orange-700', 'text-cyan-700', 'text-purple-700', 'text-green-700');
+              b.classList.remove('border-orange-300', 'border-cyan-300', 'border-purple-300', 'border-green-300');
+              b.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+            });
+            
+            // Add active state to clicked button
+            currentStyle = this.dataset.style;
+            currentColor = styleColors[currentStyle];
+            
+            switch(currentStyle) {
+              case 'wave':
+                this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+                this.classList.add('bg-cyan-100', 'text-cyan-700', 'border-cyan-300');
+                break;
+              case 'zigzag':
+                this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+                this.classList.add('bg-purple-100', 'text-purple-700', 'border-purple-300');
+                break;
+              case 'circle':
+                this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+                this.classList.add('bg-green-100', 'text-green-700', 'border-green-300');
+                break;
+              default:
+                this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+                this.classList.add('bg-orange-100', 'text-orange-700', 'border-orange-300');
+            }
+            
+            // Update code display
+            codeStyle.textContent = `'${currentStyle}'`;
+            codeColor.textContent = `'${currentColor}'`;
+          });
+        });
+        
+        // Animation button handlers
+        animBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Remove active state from all animation buttons
+            animBtns.forEach(b => {
+              b.classList.remove('bg-blue-100', 'bg-yellow-100', 'bg-pink-100');
+              b.classList.remove('text-blue-700', 'text-yellow-700', 'text-pink-700');
+              b.classList.remove('border-blue-300', 'border-yellow-300', 'border-pink-300');
+              b.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+            });
+            
+            // Add active state to clicked button
+            currentAnimation = this.dataset.animation;
+            
+            switch(currentAnimation) {
+              case 'glow':
+                this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+                this.classList.add('bg-yellow-100', 'text-yellow-700', 'border-yellow-300');
+                break;
+              case 'bounce':
+                this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+                this.classList.add('bg-pink-100', 'text-pink-700', 'border-pink-300');
+                break;
+              default:
+                this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+                this.classList.add('bg-blue-100', 'text-blue-700', 'border-blue-300');
+            }
+            
+            // Update code display
+            codeAnimation.textContent = `'${currentAnimation}'`;
+          });
+        });
+        
+        // Play animation
+        function playAnimation() {
+          // Remove existing underlines
+          const existingUnderlines = playgroundText.querySelectorAll('.demo-underline');
+          existingUnderlines.forEach(el => el.remove());
+          
+          // Create new underline
+          const underline = document.createElement('div');
+          underline.className = 'demo-underline absolute bottom-0 left-0 w-full transform origin-left transition-all';
+          underline.style.backgroundColor = currentColor;
+          underline.style.transitionDuration = currentDuration + 's';
+          
+          // Style-specific properties
+          switch(currentStyle) {
+            case 'wave':
+              underline.style.height = '3px';
+              underline.style.borderRadius = '50px';
+              underline.style.transform = 'scaleX(0)';
+              break;
+            case 'zigzag':
+              underline.style.height = '4px';
+              underline.style.clipPath = 'polygon(0 0, 10% 100%, 20% 0, 30% 100%, 40% 0, 50% 100%, 60% 0, 70% 100%, 80% 0, 90% 100%, 100% 0, 100% 100%, 0 100%)';
+              underline.style.transform = 'scaleX(0)';
+              break;
+            case 'circle':
+              underline.style.height = '8px';
+              underline.style.borderRadius = '50%';
+              underline.style.top = '50%';
+              underline.style.transform = 'translateY(-50%) scale(0)';
+              break;
+            default:
+              underline.style.height = '2px';
+              underline.style.borderRadius = '1px';
+              underline.style.transform = 'scaleX(0)';
+          }
+          
+          // Animation-specific effects
+          if (currentAnimation === 'glow') {
+            underline.style.boxShadow = `0 0 10px ${currentColor}`;
+          }
+          
+          playgroundText.appendChild(underline);
+          
+          // Trigger animation
+          setTimeout(() => {
+            if (currentStyle === 'circle') {
+              underline.style.transform = 'translateY(-50%) scale(1)';
+            } else {
+              underline.style.transform = 'scaleX(1)';
+            }
+            
+            if (currentAnimation === 'bounce') {
+              underline.style.animation = `bounce ${currentDuration}s ease-in-out`;
+            }
+          }, 50);
+        }
+        
+        // Play button handler
+        playButton.addEventListener('click', playAnimation);
+        
+        // Copy code functionality
+        copyButton.addEventListener('click', function() {
+          const codeText = `ScribbleFX.underline('#playground-text', {
+  style: '${currentStyle}',
+  animation: '${currentAnimation}',
+  duration: ${currentDuration},
+  color: '${currentColor}'
+});`;
+          
+          navigator.clipboard.writeText(codeText).then(() => {
+            this.textContent = 'Copied!';
+            this.classList.add('bg-green-600');
+            this.classList.remove('bg-neutral-800');
+            
+            setTimeout(() => {
+              this.textContent = 'Copy Code to Clipboard';
+              this.classList.remove('bg-green-600');
+              this.classList.add('bg-neutral-800');
+            }, 2000);
+          });
+        });
+        
+        // Initialize with default values
+        styleBtns[0].click();
+        animBtns[0].click();
+        
+        // Auto-play demo on load
+        setTimeout(() => {
+          playAnimation();
+        }, 1000);
+      });
+    </script>
+  </section>
+</div>
+<div id="root">
+  <section id="code-examples" class="py-20 bg-neutral-900 relative overflow-hidden">
+    <!-- Background Images -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1659079631665-eb95370fb173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8SmF2YVNjcmlwdCUyNTIwY29kZSUyNTIwc3ludGF4JTI1MjBkYXJrJTI1MjB0aGVtZSUyNTIwaGlnaGxpZ2h0ZWR8ZW58MXwwfHx8MTc0OTU0NDgyNHww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Astronaut in space representing code exploration"
+        class="absolute top-0 right-0 w-1/3 h-1/2 object-cover opacity-10"
+        loading="lazy"
+      />
+      <img 
+        src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8SmF2YVNjcmlwdCUyNTIwY29kZSUyNTIwc3ludGF4JTI1MjBkYXJrJTI1MjB0aGVtZSUyNTIwaGlnaGxpZ2h0ZWR8ZW58MXwwfHx8MTc0OTU0NDgyNHww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Code syntax highlighting example"
+        class="absolute bottom-0 left-0 w-1/4 h-1/3 object-cover opacity-10"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+          Code
+        </h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+          Get started with ScribbleFX in seconds. Copy, paste, and watch the magic happen.
+        </p>
+      </div>
+
+      <!-- Code Examples Grid -->
+      <div class="grid lg:grid-cols-2 gap-8 mb-16">
+        
+        <!-- Basic Usage -->
+        <div class="space-y-6">
+          <div class="bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 bg-neutral-900 border-b border-neutral-700">
+              <h3 class="text-lg font-semibold text-white">Basic Usage</h3>
+              <button class="copy-btn px-3 py-1 bg-orange-500 hover:bg-orange-600 text-white text-sm rounded transition-colors duration-300" data-code="basic">
+                Copy
+              </button>
+            </div>
+            
+            <div class="p-6 font-mono text-sm">
+              <div class="space-y-2">
+                <div class="text-gray-500">// Import ScribbleFX</div>
+                <div>
+                  <span class="text-blue-400">import</span>
+                  <span class="text-white"> ScribbleFX </span>
+                  <span class="text-blue-400">from</span>
+                  <span class="text-green-400"> 'scribblefx'</span>
+                  <span class="text-white">;</span>
+                </div>
+                
+                <div class="pt-4 text-gray-500">// Add underline to any element</div>
+                <div>
+                  <span class="text-yellow-400">ScribbleFX</span>
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">underline</span>
+                  <span class="text-white">(</span>
+                  <span class="text-green-400">'.title'</span>
+                  <span class="text-white">);</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Advanced Configuration -->
+          <div class="bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 bg-neutral-900 border-b border-neutral-700">
+              <h3 class="text-lg font-semibold text-white">Advanced Options</h3>
+              <button class="copy-btn px-3 py-1 bg-cyan-500 hover:bg-cyan-600 text-white text-sm rounded transition-colors duration-300" data-code="advanced">
+                Copy
+              </button>
+            </div>
+            
+            <div class="p-6 font-mono text-sm">
+              <div class="space-y-2">
+                <div>
+                  <span class="text-yellow-400">ScribbleFX</span>
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">underline</span>
+                  <span class="text-white">(</span>
+                  <span class="text-green-400">'.heading'</span>
+                  <span class="text-white">, {</span>
+                </div>
+                
+                <div class="pl-4 space-y-1">
+                  <div>
+                    <span class="text-orange-400">style</span>
+                    <span class="text-white">: </span>
+                    <span class="text-green-400">'scribble'</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">animation</span>
+                    <span class="text-white">: </span>
+                    <span class="text-green-400">'draw'</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">duration</span>
+                    <span class="text-white">: </span>
+                    <span class="text-purple-400">2.0</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">color</span>
+                    <span class="text-white">: </span>
+                    <span class="text-green-400">'#f97316'</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">trigger</span>
+                    <span class="text-white">: </span>
+                    <span class="text-green-400">'scroll'</span>
+                  </div>
+                </div>
+                
+                <div class="text-white">});</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HTML Setup & Multiple Elements -->
+        <div class="space-y-6">
+          <!-- HTML Setup -->
+          <div class="bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 bg-neutral-900 border-b border-neutral-700">
+              <h3 class="text-lg font-semibold text-white">HTML Setup</h3>
+              <button class="copy-btn px-3 py-1 bg-purple-500 hover:bg-purple-600 text-white text-sm rounded transition-colors duration-300" data-code="html">
+                Copy
+              </button>
+            </div>
+            
+            <div class="p-6 font-mono text-sm">
+              <div class="space-y-2">
+                <div class="text-gray-500">&lt;!-- Your HTML --&gt;</div>
+                <div>
+                  <span class="text-red-400">&lt;h1</span>
+                  <span class="text-yellow-400"> class</span>
+                  <span class="text-white">=</span>
+                  <span class="text-green-400">"title"</span>
+                  <span class="text-red-400">&gt;</span>
+                </div>
+                <div class="pl-4 text-white">Amazing Headlines</div>
+                <div>
+                  <span class="text-red-400">&lt;/h1&gt;</span>
+                </div>
+                
+                <div class="pt-4 text-gray-500">&lt;!-- Include GSAP --&gt;</div>
+                <div>
+                  <span class="text-red-400">&lt;script</span>
+                  <span class="text-yellow-400"> src</span>
+                  <span class="text-white">=</span>
+                  <span class="text-green-400">"gsap.min.js"</span>
+                  <span class="text-red-400">&gt;&lt;/script&gt;</span>
+                </div>
+                
+                <div class="text-gray-500">&lt;!-- Include ScribbleFX --&gt;</div>
+                <div>
+                  <span class="text-red-400">&lt;script</span>
+                  <span class="text-yellow-400"> src</span>
+                  <span class="text-white">=</span>
+                  <span class="text-green-400">"scribblefx.min.js"</span>
+                  <span class="text-red-400">&gt;&lt;/script&gt;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Multiple Elements -->
+          <div class="bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 bg-neutral-900 border-b border-neutral-700">
+              <h3 class="text-lg font-semibold text-white">Multiple Elements</h3>
+              <button class="copy-btn px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-sm rounded transition-colors duration-300" data-code="multiple">
+                Copy
+              </button>
+            </div>
+            
+            <div class="p-6 font-mono text-sm">
+              <div class="space-y-2">
+                <div class="text-gray-500">// Apply to multiple elements</div>
+                <div>
+                  <span class="text-yellow-400">ScribbleFX</span>
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">underline</span>
+                  <span class="text-white">(</span>
+                  <span class="text-green-400">'.highlight'</span>
+                  <span class="text-white">, {</span>
+                </div>
+                
+                <div class="pl-4 space-y-1">
+                  <div>
+                    <span class="text-orange-400">style</span>
+                    <span class="text-white">: </span>
+                    <span class="text-green-400">'wave'</span>
+                    <span class="text-white">,</span>
+                  </div>
+                  <div>
+                    <span class="text-orange-400">stagger</span>
+                    <span class="text-white">: </span>
+                    <span class="text-purple-400">0.2</span>
+                  </div>
+                </div>
+                
+                <div class="text-white">});</div>
+                
+                <div class="pt-4 text-gray-500">// Chain different styles</div>
+                <div>
+                  <span class="text-yellow-400">ScribbleFX</span>
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">underline</span>
+                  <span class="text-white">(</span>
+                  <span class="text-green-400">'.cta'</span>
+                  <span class="text-white">)</span>
+                </div>
+                <div class="pl-8">
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">then</span>
+                  <span class="text-white">(() </span>
+                  <span class="text-blue-400">=&gt;</span>
+                  <span class="text-white"> </span>
+                  <span class="text-yellow-400">console</span>
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">log</span>
+                  <span class="text-white">(</span>
+                  <span class="text-green-400">'Done!'</span>
+                  <span class="text-white">));</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Code Playground -->
+      <div class="bg-neutral-800 rounded-2xl border border-neutral-700 overflow-hidden mb-16">
+        <div class="flex items-center justify-between px-6 py-4 bg-neutral-900 border-b border-neutral-700">
+          <h3 class="text-xl font-semibold text-white">Live Code Editor</h3>
+          <div class="flex gap-2">
+            <button id="run-code" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm rounded transition-colors duration-300">
+              Run Code
+            </button>
+            <button id="reset-code" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm rounded transition-colors duration-300">
+              Reset
+            </button>
+          </div>
+        </div>
+        
+        <div class="grid lg:grid-cols-2">
+          <!-- Code Editor -->
+          <div class="p-6 border-r border-neutral-700">
+            <div class="bg-neutral-900 rounded-lg p-4 font-mono text-sm">
+              <textarea 
+                id="code-editor" 
+                class="w-full h-64 bg-transparent text-white resize-none outline-none"
+                placeholder="// Write your ScribbleFX code here..."
+              >ScribbleFX.underline('.demo-text', {
+  style: 'scribble',
+  animation: 'draw',
+  duration: 1.5,
+  color: '#f97316'
+});</textarea>
+            </div>
+          </div>
+          
+          <!-- Preview Area -->
+          <div class="p-6">
+            <div class="bg-white rounded-lg p-8 h-64 flex items-center justify-center">
+              <h4 class="demo-text text-2xl font-bold text-gray-900 relative">
+                Preview Text
+              </h4>
+            </div>
+            
+            <!-- Code Gallery -->
+            <div class="mt-6 relative h-32 rounded-lg overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1607706189992-eae578626c86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8M3x8SmF2YVNjcmlwdCUyNTIwY29kZSUyNTIwc3ludGF4JTI1MjBkYXJrJTI1MjB0aGVtZSUyNTIwaGlnaGxpZ2h0ZWR8ZW58MXwwfHx8MTc0OTU0NDgyNHww&ixlib=rb-4.1.0&q=80&w=1080"
+                alt="Laravel development experience showcasing code quality"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                <div class="p-4 text-white">
+                  <div class="text-sm font-medium">Code Quality</div>
+                  <div class="text-xs text-gray-300">Clean, readable, maintainable</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Reference -->
+      <div class="bg-neutral-800 rounded-2xl border border-neutral-700 p-8">
+        <h3 class="text-2xl font-bold text-white mb-6 text-center">Quick Reference</h3>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Styles -->
+          <div>
+            <h4 class="text-lg font-semibold text-orange-400 mb-4">Available Styles</h4>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between text-gray-300">
+                <span>'scribble'</span>
+                <span class="text-gray-500">Hand-drawn</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>'wave'</span>
+                <span class="text-gray-500">Smooth wave</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>'zigzag'</span>
+                <span class="text-gray-500">Sharp edges</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>'circle'</span>
+                <span class="text-gray-500">Circular highlight</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>'underline'</span>
+                <span class="text-gray-500">Classic line</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Animations -->
+          <div>
+            <h4 class="text-lg font-semibold text-cyan-400 mb-4">Animation Types</h4>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between text-gray-300">
+                <span>'draw'</span>
+                <span class="text-gray-500">Draw effect</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>'glow'</span>
+                <span class="text-gray-500">Glowing effect</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>'bounce'</span>
+                <span class="text-gray-500">Bouncy motion</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>'fade'</span>
+                <span class="text-gray-500">Fade in/out</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Options -->
+          <div>
+            <h4 class="text-lg font-semibold text-purple-400 mb-4">Common Options</h4>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between text-gray-300">
+                <span>duration</span>
+                <span class="text-gray-500">0.5 - 5.0s</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>color</span>
+                <span class="text-gray-500">Any hex/rgb</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>trigger</span>
+                <span class="text-gray-500">scroll/click</span>
+              </div>
+              <div class="flex justify-between text-gray-300">
+                <span>delay</span>
+                <span class="text-gray-500">0 - 10s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const copyBtns = document.querySelectorAll('.copy-btn');
+        const codeEditor = document.getElementById('code-editor');
+        const runCodeBtn = document.getElementById('run-code');
+        const resetCodeBtn = document.getElementById('reset-code');
+        const demoText = document.querySelector('.demo-text');
+        
+        // Code snippets
+        const codeSnippets = {
+          basic: `import ScribbleFX from 'scribblefx';
+
+// Add underline to any element
+ScribbleFX.underline('.title');`,
+          
+          advanced: `ScribbleFX.underline('.heading', {
+  style: 'scribble',
+  animation: 'draw',
+  duration: 2.0,
+  color: '#f97316',
+  trigger: 'scroll'
+});`,
+          
+          html: `<!-- Your HTML -->
+<h1 class="title">Amazing Headlines</h1>
+
+<!-- Include GSAP -->
+<script src="gsap.min.js"></script>
+
+<!-- Include ScribbleFX -->
+<script src="scribblefx.min.js"></script>`,
+          
+          multiple: `// Apply to multiple elements
+ScribbleFX.underline('.highlight', {
+  style: 'wave',
+  stagger: 0.2
+});
+
+// Chain different styles
+ScribbleFX.underline('.cta')
+        .then(() => console.log('Done!'));`
+        };
+        
+        // Copy functionality
+        copyBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            const codeType = this.dataset.code;
+            const code = codeSnippets[codeType];
+            
+            navigator.clipboard.writeText(code).then(() => {
+              const originalText = this.textContent;
+              this.textContent = 'Copied!';
+              this.classList.add('bg-green-500');
+              this.classList.remove('bg-orange-500', 'bg-cyan-500', 'bg-purple-500', 'bg-green-500');
+              
+              setTimeout(() => {
+                this.textContent = originalText;
+                this.classList.remove('bg-green-500');
+                
+                // Restore original color based on code type
+                switch(codeType) {
+                  case 'basic':
+                    this.classList.add('bg-orange-500');
+                    break;
+                  case 'advanced':
+                    this.classList.add('bg-cyan-500');
+                    break;
+                  case 'html':
+                    this.classList.add('bg-purple-500');
+                    break;
+                  case 'multiple':
+                    this.classList.add('bg-green-500');
+                    break;
+                }
+              }, 2000);
+            });
+          });
+        });
+        
+        // Run code functionality
+        runCodeBtn.addEventListener('click', function() {
+          // Clear existing underlines
+          const existingUnderlines = demoText.querySelectorAll('.code-underline');
+          existingUnderlines.forEach(el => el.remove());
+          
+          // Simple code execution simulation
+          const code = codeEditor.value;
+          
+          // Extract style, color, and duration from code
+          const styleMatch = code.match(/style:\s*['"`](\w+)['"`]/);
+          const colorMatch = code.match(/color:\s*['"`](#?\w+)['"`]/);
+          const durationMatch = code.match(/duration:\s*(\d+\.?\d*)/);
+          
+          const style = styleMatch ? styleMatch[1] : 'scribble';
+          const color = colorMatch ? colorMatch[1] : '#f97316';
+          const duration = durationMatch ? parseFloat(durationMatch[1]) : 1.5;
+          
+          // Create underline
+          const underline = document.createElement('div');
+          underline.className = 'code-underline absolute bottom-0 left-0 w-full transform origin-left transition-all';
+          underline.style.backgroundColor = color;
+          underline.style.transitionDuration = duration + 's';
+          
+          // Style-specific properties
+          switch(style) {
+            case 'wave':
+              underline.style.height = '3px';
+              underline.style.borderRadius = '50px';
+              underline.style.transform = 'scaleX(0)';
+              break;
+            case 'zigzag':
+              underline.style.height = '4px';
+              underline.style.clipPath = 'polygon(0 0, 10% 100%, 20% 0, 30% 100%, 40% 0, 50% 100%, 60% 0, 70% 100%, 80% 0, 90% 100%, 100% 0, 100% 100%, 0 100%)';
+              underline.style.transform = 'scaleX(0)';
+              break;
+            case 'circle':
+              underline.style.height = '8px';
+              underline.style.borderRadius = '50%';
+              underline.style.top = '50%';
+              underline.style.transform = 'translateY(-50%) scale(0)';
+              break;
+            default:
+              underline.style.height = '2px';
+              underline.style.borderRadius = '1px';
+              underline.style.transform = 'scaleX(0)';
+          }
+          
+          demoText.appendChild(underline);
+          
+          // Animate
+          setTimeout(() => {
+            if (style === 'circle') {
+              underline.style.transform = 'translateY(-50%) scale(1)';
+            } else {
+              underline.style.transform = 'scaleX(1)';
+            }
+          }, 100);
+          
+          // Update button state
+          this.textContent = 'Running...';
+          this.classList.add('bg-green-600');
+          this.classList.remove('bg-green-500');
+          
+          setTimeout(() => {
+            this.textContent = 'Run Code';
+            this.classList.remove('bg-green-600');
+            this.classList.add('bg-green-500');
+          }, duration * 1000 + 500);
+        });
+        
+        // Reset code functionality
+        resetCodeBtn.addEventListener('click', function() {
+          codeEditor.value = codeSnippets.basic;
+          
+          // Clear underlines
+          const existingUnderlines = demoText.querySelectorAll('.code-underline');
+          existingUnderlines.forEach(el => el.remove());
+        });
+      });
+    </script>
+  </section>
+</div>
+<div id="root">
+  <section id="installation" class="py-20 bg-white relative overflow-hidden">
+    <!-- Background Images -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8Y29kZSUyNTIwZWRpdG9yJTI1MjBpbnN0YWxsYXRpb24lMjUyMGRhcmslMjUyMG1vZGVybiUyNTIwZGV2ZWxvcGVyfGVufDF8MHx8fDE3NDk1NDQ5MTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Computer screen with code editor showing installation process"
+        class="absolute top-0 right-0 w-1/3 h-1/2 object-cover opacity-5"
+        loading="lazy"
+      />
+      <img 
+        src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8Y29kZSUyNTIwZWRpdG9yJTI1MjBpbnN0YWxsYXRpb24lMjUyMGRhcmslMjUyMG1vZGVybiUyNTIwZGV2ZWxvcGVyfGVufDF8MHx8fDE3NDk1NDQ5MTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Monitor displaying programming language code"
+        class="absolute bottom-0 left-0 w-1/4 h-1/3 object-cover opacity-5"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          Install
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Get ScribbleFX up and running in your project with just a few simple steps.
+        </p>
+      </div>
+
+      <!-- Installation Methods -->
+      <div class="grid lg:grid-cols-2 gap-12 mb-16">
+        
+        <!-- Left Column - Installation Options -->
+        <div class="space-y-8">
+          <!-- NPM Installation -->
+          <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                <span class="text-red-600 text-xl font-bold">npm</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">NPM Package</h3>
+            </div>
+            
+            <div class="bg-neutral-900 rounded-xl p-6 mb-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-gray-400 text-sm font-mono">Terminal</span>
+                <button class="copy-install-btn px-3 py-1 bg-orange-500 hover:bg-orange-600 text-white text-sm rounded transition-colors duration-300" data-code="npm">
+                  Copy
+                </button>
+              </div>
+              <div class="font-mono text-green-400">
+                <span class="text-gray-500">$</span> npm install scribblefx
+              </div>
+            </div>
+            
+            <div class="space-y-3 text-gray-600">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                <span>Automatic dependency management</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                <span>TypeScript definitions included</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                <span>Tree-shaking support</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CDN Installation -->
+          <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <span class="text-blue-600 text-xl">🌐</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">CDN Link</h3>
+            </div>
+            
+            <div class="bg-neutral-900 rounded-xl p-6 mb-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-gray-400 text-sm font-mono">HTML</span>
+                <button class="copy-install-btn px-3 py-1 bg-cyan-500 hover:bg-cyan-600 text-white text-sm rounded transition-colors duration-300" data-code="cdn">
+                  Copy
+                </button>
+              </div>
+              <div class="font-mono text-sm space-y-2">
+                <div>
+                  <span class="text-red-400">&lt;script</span>
+                  <span class="text-yellow-400"> src</span>
+                  <span class="text-white">=</span>
+                  <span class="text-green-400">"https://cdn.jsdelivr.net/npm/scribblefx@latest/dist/scribblefx.min.js"</span>
+                  <span class="text-red-400">&gt;&lt;/script&gt;</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="space-y-3 text-gray-600">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <span>No build process required</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <span>Global CDN delivery</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <span>Perfect for prototyping</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Download -->
+          <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <span class="text-purple-600 text-xl">📦</span>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Direct Download</h3>
+            </div>
+            
+            <div class="flex gap-3 mb-6">
+              <button class="download-btn flex-1 px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105">
+                Download ZIP
+              </button>
+              <button class="download-btn flex-1 px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105">
+                Download Minified
+              </button>
+            </div>
+            
+            <div class="space-y-3 text-gray-600">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                <span>Source code included</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                <span>Self-hosted option</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                <span>Offline development</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Setup Guide -->
+        <div class="space-y-8">
+          <!-- Quick Start -->
+          <div class="bg-neutral-900 rounded-2xl border border-neutral-700 overflow-hidden">
+            <div class="px-6 py-4 bg-neutral-800 border-b border-neutral-700">
+              <h3 class="text-xl font-semibold text-white">Quick Start Guide</h3>
+            </div>
+            
+            <div class="p-6 space-y-6">
+              <!-- Step 1 -->
+              <div class="flex gap-4">
+                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  1
+                </div>
+                <div class="flex-1">
+                  <h4 class="text-white font-semibold mb-2">Install Dependencies</h4>
+                  <div class="bg-neutral-800 rounded-lg p-4 font-mono text-sm">
+                    <div class="text-gray-400 mb-2"># Install GSAP (required)</div>
+                    <div class="text-green-400">npm install gsap</div>
+                    <div class="text-gray-400 mt-2"># Install ScribbleFX</div>
+                    <div class="text-green-400">npm install scribblefx</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="flex gap-4">
+                <div class="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  2
+                </div>
+                <div class="flex-1">
+                  <h4 class="text-white font-semibold mb-2">Import Library</h4>
+                  <div class="bg-neutral-800 rounded-lg p-4 font-mono text-sm">
+                    <div class="text-blue-400">import</div>
+                    <span class="text-white"> ScribbleFX </span>
+                    <span class="text-blue-400">from</span>
+                    <span class="text-green-400"> 'scribblefx'</span>
+                    <span class="text-white">;</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="flex gap-4">
+                <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  3
+                </div>
+                <div class="flex-1">
+                  <h4 class="text-white font-semibold mb-2">Add Underlines</h4>
+                  <div class="bg-neutral-800 rounded-lg p-4 font-mono text-sm">
+                    <div>
+                      <span class="text-yellow-400">ScribbleFX</span>
+                      <span class="text-white">.</span>
+                      <span class="text-blue-400">underline</span>
+                      <span class="text-white">(</span>
+                      <span class="text-green-400">'.title'</span>
+                      <span class="text-white">);</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Requirements -->
+          <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">System Requirements</h3>
+            
+            <div class="space-y-4">
+              <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                <span class="text-gray-700 font-medium">Browser Support</span>
+                <span class="text-gray-600">IE11+, Chrome, Firefox, Safari</span>
+              </div>
+              <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                <span class="text-gray-700 font-medium">Dependencies</span>
+                <span class="text-gray-600">GSAP 3.0+</span>
+              </div>
+              <div class="flex justify-between items-center py-3 border-b border-gray-200">
+                <span class="text-gray-700 font-medium">Bundle Size</span>
+                <span class="text-gray-600">5.2KB gzipped</span>
+              </div>
+              <div class="flex justify-between items-center py-3">
+                <span class="text-gray-700 font-medium">TypeScript</span>
+                <span class="text-green-600 font-semibold">✓ Included</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code Example Gallery -->
+          <div class="relative h-48 rounded-2xl overflow-hidden border border-gray-200">
+            <img 
+              src="https://images.unsplash.com/photo-1615525137689-198778541af6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8M3x8Y29kZSUyNTIwZWRpdG9yJTI1MjBpbnN0YWxsYXRpb24lMjUyMGRhcmslMjUyMG1vZGVybiUyNTIwZGV2ZWxvcGVyfGVufDF8MHx8fDE3NDk1NDQ5MTZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="C OpenGL Code Sample showing development environment"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+              <div class="p-6 text-white">
+                <h4 class="text-lg font-semibold mb-2">Development Ready</h4>
+                <p class="text-gray-200 text-sm">
+                  Works seamlessly with modern development environments and build tools.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Framework Integration -->
+      <div class="bg-neutral-900 rounded-2xl p-8 border border-neutral-700">
+        <h3 class="text-2xl font-bold text-white mb-8 text-center">Framework Integration</h3>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- React -->
+          <div class="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                <span class="text-blue-600 font-bold">R</span>
+              </div>
+              <h4 class="text-lg font-semibold text-white">React</h4>
+            </div>
+            
+            <div class="bg-neutral-900 rounded-lg p-4 font-mono text-sm mb-4">
+              <div class="space-y-1">
+                <div>
+                  <span class="text-blue-400">useEffect</span>
+                  <span class="text-white">(() </span>
+                  <span class="text-blue-400">=&gt;</span>
+                  <span class="text-white"> {</span>
+                </div>
+                <div class="pl-4">
+                  <span class="text-yellow-400">ScribbleFX</span>
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">underline</span>
+                  <span class="text-white">(</span>
+                  <span class="text-green-400">'.title'</span>
+                  <span class="text-white">);</span>
+                </div>
+                <div>
+                  <span class="text-white">}, []);</span>
+                </div>
+              </div>
+            </div>
+            
+            <button class="copy-framework-btn w-full px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded transition-colors duration-300" data-framework="react">
+              Copy React Code
+            </button>
+          </div>
+
+          <!-- Vue -->
+          <div class="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                <span class="text-green-600 font-bold">V</span>
+              </div>
+              <h4 class="text-lg font-semibold text-white">Vue.js</h4>
+            </div>
+            
+            <div class="bg-neutral-900 rounded-lg p-4 font-mono text-sm mb-4">
+              <div class="space-y-1">
+                <div>
+                  <span class="text-blue-400">mounted</span>
+                  <span class="text-white">() {</span>
+                </div>
+                <div class="pl-4">
+                  <span class="text-yellow-400">ScribbleFX</span>
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">underline</span>
+                  <span class="text-white">(</span>
+                  <span class="text-green-400">'.title'</span>
+                  <span class="text-white">);</span>
+                </div>
+                <div>
+                  <span class="text-white">}</span>
+                </div>
+              </div>
+            </div>
+            
+            <button class="copy-framework-btn w-full px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm rounded transition-colors duration-300" data-framework="vue">
+              Copy Vue Code
+            </button>
+          </div>
+
+          <!-- Vanilla JS -->
+          <div class="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                <span class="text-yellow-600 font-bold">JS</span>
+              </div>
+              <h4 class="text-lg font-semibold text-white">Vanilla JS</h4>
+            </div>
+            
+            <div class="bg-neutral-900 rounded-lg p-4 font-mono text-sm mb-4">
+              <div class="space-y-1">
+                <div>
+                  <span class="text-blue-400">document</span>
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">addEventListener</span>
+                  <span class="text-white">(</span>
+                </div>
+                <div class="pl-4">
+                  <span class="text-green-400">'DOMContentLoaded'</span>
+                  <span class="text-white">, () </span>
+                  <span class="text-blue-400">=&gt;</span>
+                  <span class="text-white"> {</span>
+                </div>
+                <div class="pl-8">
+                  <span class="text-yellow-400">ScribbleFX</span>
+                  <span class="text-white">.</span>
+                  <span class="text-blue-400">underline</span>
+                  <span class="text-white">(</span>
+                  <span class="text-green-400">'.title'</span>
+                  <span class="text-white">);</span>
+                </div>
+                <div class="pl-4">
+                  <span class="text-white">});</span>
+                </div>
+              </div>
+            </div>
+            
+            <button class="copy-framework-btn w-full px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-sm rounded transition-colors duration-300" data-framework="vanilla">
+              Copy Vanilla Code
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const copyInstallBtns = document.querySelectorAll('.copy-install-btn');
+        const copyFrameworkBtns = document.querySelectorAll('.copy-framework-btn');
+        const downloadBtns = document.querySelectorAll('.download-btn');
+        
+        // Installation code snippets
+        const installCodes = {
+          npm: 'npm install scribblefx',
+          cdn: '<script src="https://cdn.jsdelivr.net/npm/scribblefx@latest/dist/scribblefx.min.js"></script>'
+        };
+        
+        // Framework code snippets
+        const frameworkCodes = {
+          react: `import { useEffect } from 'react';
+import ScribbleFX from 'scribblefx';
+
+function MyComponent() {
+  useEffect(() => {
+    ScribbleFX.underline('.title');
+  }, []);
+  
+  return <h1 className="title">Hello World</h1>;
+}`,
+          vue: `<template>
+  <h1 class="title">Hello World</h1>
+</template>
+
+<script>
+import ScribbleFX from 'scribblefx';
+
+export default {
+  mounted() {
+    ScribbleFX.underline('.title');
+  }
+}
+</script>`,
+          vanilla: `document.addEventListener('DOMContentLoaded', () => {
+  ScribbleFX.underline('.title', {
+    style: 'scribble',
+    animation: 'draw',
+    duration: 1.5
+  });
+});`
+        };
+        
+        // Copy installation code
+        copyInstallBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            const codeType = this.dataset.code;
+            const code = installCodes[codeType];
+            
+            navigator.clipboard.writeText(code).then(() => {
+              const originalText = this.textContent;
+              this.textContent = 'Copied!';
+              this.classList.add('bg-green-500');
+              this.classList.remove('bg-orange-500', 'bg-cyan-500');
+              
+              setTimeout(() => {
+                this.textContent = originalText;
+                this.classList.remove('bg-green-500');
+                if (codeType === 'npm') {
+                  this.classList.add('bg-orange-500');
+                } else {
+                  this.classList.add('bg-cyan-500');
+                }
+              }, 2000);
+            });
+          });
+        });
+        
+        // Copy framework code
+        copyFrameworkBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            const framework = this.dataset.framework;
+            const code = frameworkCodes[framework];
+            
+            navigator.clipboard.writeText(code).then(() => {
+              const originalText = this.textContent;
+              this.textContent = 'Copied!';
+              this.classList.add('bg-green-500');
+              this.classList.remove('bg-blue-500', 'bg-green-500', 'bg-yellow-500');
+              
+              setTimeout(() => {
+                this.textContent = originalText;
+                this.classList.remove('bg-green-500');
+                switch(framework) {
+                  case 'react':
+                    this.classList.add('bg-blue-500');
+                    break;
+                  case 'vue':
+                    this.classList.add('bg-green-500');
+                    break;
+                  case 'vanilla':
+                    this.classList.add('bg-yellow-500');
+                    break;
+                }
+              }, 2000);
+            });
+          });
+        });
+        
+        // Download functionality
+        downloadBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            const originalText = this.textContent;
+            this.textContent = 'Downloading...';
+            this.disabled = true;
+            
+            // Simulate download
+            setTimeout(() => {
+              this.textContent = 'Downloaded!';
+              this.classList.add('bg-green-500');
+              this.classList.remove('bg-purple-500', 'bg-gray-600');
+              
+              setTimeout(() => {
+                this.textContent = originalText;
+                this.disabled = false;
+                this.classList.remove('bg-green-500');
+                if (originalText.includes('ZIP')) {
+                  this.classList.add('bg-purple-500');
+                } else {
+                  this.classList.add('bg-gray-600');
+                }
+              }, 2000);
+            }, 1000);
+          });
+        });
+      });
+    </script>
+  </section>
+</div>
+<div id="root">
+  <section id="github-stats" class="py-20 bg-neutral-900 relative overflow-hidden">
+    <!-- Background Images -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8Z2l0aHViJTI1MjBkYXNoYm9hcmQlMjUyMGFuYWx5dGljcyUyNTIwZGFyayUyNTIwbW9kZXJuJTI1MjBkZXZlbG9wZXJ8ZW58MXwwfHx8MTc0OTU0NTAwMnww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Github for desktop dashboard"
+        class="absolute top-0 right-0 w-1/3 h-1/2 object-cover opacity-10"
+        loading="lazy"
+      />
+      <img 
+        src="https://images.unsplash.com/photo-1590595906931-81f04f0ccebb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8Z2l0aHViJTI1MjBkYXNoYm9hcmQlMjUyMGFuYWx5dGljcyUyNTIwZGFyayUyNTIwbW9kZXJuJTI1MjBkZXZlbG9wZXJ8ZW58MXwwfHx8MTc0OTU0NTAwMnww&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Github interface and analytics"
+        class="absolute bottom-0 left-0 w-1/4 h-1/3 object-cover opacity-10"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+          GitHub
+        </h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+          Join our growing community of developers. Star the project and contribute to the future of web animations.
+        </p>
+      </div>
+
+      <!-- GitHub Stats Grid -->
+      <div class="grid lg:grid-cols-2 gap-12 mb-16">
+        
+        <!-- Left Column - Repository Stats -->
+        <div class="space-y-8">
+          <!-- Main Repository Card -->
+          <div class="bg-neutral-800 rounded-2xl p-8 border border-neutral-700 backdrop-blur-sm bg-neutral-800/80">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center">
+                <span class="text-orange-600 text-2xl font-bold">SF</span>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-white">ScribbleFX</h3>
+                <p class="text-gray-400">Animated SVG underlines for the web</p>
+              </div>
+            </div>
+
+            <!-- Repository Stats -->
+            <div class="grid grid-cols-3 gap-6 mb-8">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-orange-400 mb-2" id="stars-count">2,847</div>
+                <div class="text-sm text-gray-400">Stars</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-cyan-400 mb-2" id="forks-count">342</div>
+                <div class="text-sm text-gray-400">Forks</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-purple-400 mb-2" id="issues-count">12</div>
+                <div class="text-sm text-gray-400">Issues</div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-4">
+              <button 
+                id="star-btn"
+                class="flex-1 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+              >
+                <span>⭐</span>
+                <span>Star Repository</span>
+              </button>
+              <button 
+                id="fork-btn"
+                class="flex-1 px-6 py-3 bg-neutral-700 hover:bg-neutral-600 text-white font-semibold rounded-lg transition-all duration-300 border border-neutral-600 hover:border-neutral-500 flex items-center justify-center gap-2"
+              >
+                <span>🍴</span>
+                <span>Fork</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Contributors -->
+          <div class="bg-neutral-800 rounded-2xl p-8 border border-neutral-700">
+            <h3 class="text-xl font-bold text-white mb-6">Top Contributors</h3>
+            
+            <div class="space-y-4">
+              <div class="flex items-center gap-4 p-4 bg-neutral-700 rounded-lg">
+                <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
+                  JD
+                </div>
+                <div class="flex-1">
+                  <div class="text-white font-medium">johndoe</div>
+                  <div class="text-gray-400 text-sm">147 commits</div>
+                </div>
+                <div class="text-orange-400 text-sm">Maintainer</div>
+              </div>
+              
+              <div class="flex items-center gap-4 p-4 bg-neutral-700 rounded-lg">
+                <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold">
+                  AS
+                </div>
+                <div class="flex-1">
+                  <div class="text-white font-medium">alexsmith</div>
+                  <div class="text-gray-400 text-sm">89 commits</div>
+                </div>
+                <div class="text-cyan-400 text-sm">Core Dev</div>
+              </div>
+              
+              <div class="flex items-center gap-4 p-4 bg-neutral-700 rounded-lg">
+                <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                  MJ
+                </div>
+                <div class="flex-1">
+                  <div class="text-white font-medium">maryjane</div>
+                  <div class="text-gray-400 text-sm">56 commits</div>
+                </div>
+                <div class="text-purple-400 text-sm">Contributor</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Activity & Community -->
+        <div class="space-y-8">
+          <!-- Recent Activity -->
+          <div class="bg-neutral-800 rounded-2xl p-8 border border-neutral-700">
+            <h3 class="text-xl font-bold text-white mb-6">Recent Activity</h3>
+            
+            <div class="space-y-4">
+              <div class="flex gap-4">
+                <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                <div class="flex-1">
+                  <div class="text-white text-sm">
+                    <span class="font-medium">v2.1.0 released</span>
+                    <span class="text-gray-400">- Added new zigzag style</span>
+                  </div>
+                  <div class="text-gray-500 text-xs mt-1">2 days ago</div>
+                </div>
+              </div>
+              
+              <div class="flex gap-4">
+                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                <div class="flex-1">
+                  <div class="text-white text-sm">
+                    <span class="font-medium">Bug fix</span>
+                    <span class="text-gray-400">- Fixed Safari compatibility issue</span>
+                  </div>
+                  <div class="text-gray-500 text-xs mt-1">5 days ago</div>
+                </div>
+              </div>
+              
+              <div class="flex gap-4">
+                <div class="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                <div class="flex-1">
+                  <div class="text-white text-sm">
+                    <span class="font-medium">Documentation update</span>
+                    <span class="text-gray-400">- Added React examples</span>
+                  </div>
+                  <div class="text-gray-500 text-xs mt-1">1 week ago</div>
+                </div>
+              </div>
+              
+              <div class="flex gap-4">
+                <div class="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                <div class="flex-1">
+                  <div class="text-white text-sm">
+                    <span class="font-medium">Performance improvement</span>
+                    <span class="text-gray-400">- 15% faster animations</span>
+                  </div>
+                  <div class="text-gray-500 text-xs mt-1">2 weeks ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Community Stats -->
+          <div class="bg-neutral-800 rounded-2xl p-8 border border-neutral-700">
+            <h3 class="text-xl font-bold text-white mb-6">Community</h3>
+            
+            <div class="grid grid-cols-2 gap-6 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-green-400 mb-2">156</div>
+                <div class="text-sm text-gray-400">Contributors</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-blue-400 mb-2">1.2k</div>
+                <div class="text-sm text-gray-400">Downloads</div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex justify-between items-center">
+                <span class="text-gray-300">Weekly downloads</span>
+                <span class="text-green-400 font-semibold">+23%</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-300">Active forks</span>
+                <span class="text-blue-400 font-semibold">89</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-300">Open PRs</span>
+                <span class="text-purple-400 font-semibold">7</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Development Environment -->
+          <div class="relative h-48 rounded-2xl overflow-hidden border border-neutral-700">
+            <img 
+              src="https://images.unsplash.com/photo-1618401479427-c8ef9465fbe1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8M3x8Z2l0aHViJTI1MjBkYXNoYm9hcmQlMjUyMGFuYWx5dGljcyUyNTIwZGFyayUyNTIwbW9kZXJuJTI1MjBkZXZlbG9wZXJ8ZW58MXwwfHx8MTc0OTU0NTAwMnww&ixlib=rb-4.1.0&q=80&w=1080"
+              alt="Octocat figurine with laptop showing code editor and terminal"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+              <div class="p-6 text-white">
+                <h4 class="text-lg font-semibold mb-2">Open Source</h4>
+                <p class="text-gray-200 text-sm">
+                  Built by developers, for developers. Join our community and help shape the future.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="bg-gradient-to-r from-orange-500/10 to-cyan-500/10 rounded-2xl p-8 border border-orange-500/20 text-center">
+        <h3 class="text-2xl font-bold text-white mb-4">
+          Ready to Contribute?
+        </h3>
+        <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+          Whether you're fixing bugs, adding features, or improving documentation, every contribution matters.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button 
+            id="view-repo-btn"
+            class="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+          >
+            View Repository
+          </button>
+          <button 
+            id="contribute-btn"
+            class="px-8 py-4 bg-transparent border-2 border-cyan-500 hover:bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 font-semibold rounded-lg transition-all duration-300"
+          >
+            Contribute Guide
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contribution Modal -->
+    <div id="contribute-modal" class="fixed inset-0 z-50 hidden">
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="contribute-backdrop"></div>
+      
+      <!-- Modal Content -->
+      <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
+        <div class="bg-neutral-900 rounded-xl border border-neutral-700 max-w-2xl w-full max-h-[90vh] overflow-hidden">
+          <!-- Modal Header -->
+          <div class="flex items-center justify-between p-6 border-b border-neutral-700">
+            <h3 class="text-xl font-semibold text-white">Contributing to ScribbleFX</h3>
+            <button 
+              id="close-contribute-modal"
+              class="text-gray-400 hover:text-white transition-colors duration-200"
+              aria-label="Close modal"
+            >
+              <span class="text-2xl">&times;</span>
+            </button>
+          </div>
+          
+          <!-- Modal Body -->
+          <div class="p-6 overflow-y-auto max-h-96">
+            <div class="space-y-6">
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-3">Getting Started</h4>
+                <div class="space-y-2 text-gray-300">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                    <span>Fork the repository</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                    <span>Create a feature branch</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                    <span>Make your changes</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                    <span>Submit a pull request</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="text-lg font-semibold text-white mb-3">Areas to Contribute</h4>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="bg-neutral-800 rounded-lg p-4">
+                    <div class="text-cyan-400 font-medium mb-2">🐛 Bug Fixes</div>
+                    <div class="text-gray-400 text-sm">Help us squash bugs and improve stability</div>
+                  </div>
+                  <div class="bg-neutral-800 rounded-lg p-4">
+                    <div class="text-purple-400 font-medium mb-2">✨ New Features</div>
+                    <div class="text-gray-400 text-sm">Add new animation styles and effects</div>
+                  </div>
+                  <div class="bg-neutral-800 rounded-lg p-4">
+                    <div class="text-green-400 font-medium mb-2">📚 Documentation</div>
+                    <div class="text-gray-400 text-sm">Improve guides and examples</div>
+                  </div>
+                  <div class="bg-neutral-800 rounded-lg p-4">
+                    <div class="text-yellow-400 font-medium mb-2">🧪 Testing</div>
+                    <div class="text-gray-400 text-sm">Write tests and improve coverage</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Modal Footer -->
+          <div class="p-6 border-t border-neutral-700">
+            <div class="flex gap-4">
+              <button 
+                id="github-link"
+                class="flex-1 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition-colors duration-300"
+              >
+                Open GitHub
+              </button>
+              <button 
+                id="close-contribute-modal-btn"
+                class="flex-1 px-6 py-3 bg-neutral-700 hover:bg-neutral-600 text-white font-medium rounded-lg transition-colors duration-300"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const starBtn = document.getElementById('star-btn');
+        const forkBtn = document.getElementById('fork-btn');
+        const viewRepoBtn = document.getElementById('view-repo-btn');
+        const contributeBtn = document.getElementById('contribute-btn');
+        const contributeModal = document.getElementById('contribute-modal');
+        const closeContributeModal = document.getElementById('close-contribute-modal');
+        const closeContributeModalBtn = document.getElementById('close-contribute-modal-btn');
+        const contributeBackdrop = document.getElementById('contribute-backdrop');
+        const githubLink = document.getElementById('github-link');
+        
+        // Animated counters
+        function animateCounter(element, target, duration = 2000) {
+          const start = 0;
+          const increment = target / (duration / 16);
+          let current = start;
+          
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            element.textContent = Math.floor(current).toLocaleString();
+          }, 16);
+        }
+        
+        // Initialize counters
+        const starsCount = document.getElementById('stars-count');
+        const forksCount = document.getElementById('forks-count');
+        const issuesCount = document.getElementById('issues-count');
+        
+        // Animate counters on scroll
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounter(starsCount, 2847);
+              animateCounter(forksCount, 342);
+              animateCounter(issuesCount, 12);
+              observer.unobserve(entry.target);
+            }
+          });
+        });
+        
+        observer.observe(starsCount);
+        
+        // Star button functionality
+        starBtn.addEventListener('click', function() {
+          const currentStars = parseInt(starsCount.textContent.replace(',', ''));
+          starsCount.textContent = (currentStars + 1).toLocaleString();
+          
+          this.innerHTML = '<span>⭐</span><span>Starred!</span>';
+          this.classList.add('bg-green-500');
+          this.classList.remove('bg-orange-500');
+          
+          setTimeout(() => {
+            this.innerHTML = '<span>⭐</span><span>Star Repository</span>';
+            this.classList.remove('bg-green-500');
+            this.classList.add('bg-orange-500');
+          }, 3000);
+        });
+        
+        // Fork button functionality
+        forkBtn.addEventListener('click', function() {
+          const currentForks = parseInt(forksCount.textContent.replace(',', ''));
+          forksCount.textContent = (currentForks + 1).toLocaleString();
+          
+          this.innerHTML = '<span>🍴</span><span>Forked!</span>';
+          this.classList.add('bg-cyan-500', 'border-cyan-500');
+          this.classList.remove('bg-neutral-700', 'border-neutral-600');
+          
+          setTimeout(() => {
+            this.innerHTML = '<span>🍴</span><span>Fork</span>';
+            this.classList.remove('bg-cyan-500', 'border-cyan-500');
+            this.classList.add('bg-neutral-700', 'border-neutral-600');
+          }, 3000);
+        });
+        
+        // View repository button
+        viewRepoBtn.addEventListener('click', function() {
+          // Simulate opening GitHub repository
+          console.log('Opening GitHub repository...');
+        });
+        
+        // Contribute modal functionality
+        function openContributeModal() {
+          contributeModal.classList.remove('hidden');
+          contributeModal.setAttribute('aria-modal', 'true');
+          document.body.style.overflow = 'hidden';
+          closeContributeModal.focus();
+        }
+        
+        function closeModal() {
+          contributeModal.classList.add('hidden');
+          contributeModal.setAttribute('aria-modal', 'false');
+          document.body.style.overflow = '';
+          contributeBtn.focus();
+        }
+        
+        // Open modal
+        contributeBtn.addEventListener('click', openContributeModal);
+        
+        // Close modal events
+        closeContributeModal.addEventListener('click', closeModal);
+        closeContributeModalBtn.addEventListener('click', closeModal);
+        contributeBackdrop.addEventListener('click', closeModal);
+        
+        // ESC key to close
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' && !contributeModal.classList.contains('hidden')) {
+            closeModal();
+          }
+        });
+        
+        // Focus trap
+        const focusableElements = contributeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstFocusable = focusableElements[0];
+        const lastFocusable = focusableElements[focusableElements.length - 1];
+        
+        contributeModal.addEventListener('keydown', function(event) {
+          if (event.key === 'Tab') {
+            if (event.shiftKey) {
+              if (document.activeElement === firstFocusable) {
+                lastFocusable.focus();
+                event.preventDefault();
+              }
+            } else {
+              if (document.activeElement === lastFocusable) {
+                firstFocusable.focus();
+                event.preventDefault();
+              }
+            }
+          }
+        });
+        
+        // GitHub link
+        githubLink.addEventListener('click', function() {
+          console.log('Opening GitHub repository...');
+          closeModal();
+        });
+      });
+    </script>
+  </section>
+</div>
+<div id="root">
+  <footer id="footer" class="bg-neutral-900 border-t border-neutral-800 relative overflow-hidden">
+    <!-- Background Images -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1607294846590-fd005d7973e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MXx8ZGV2ZWxvcGVyJTI1MjBmb290ZXIlMjUyMGxvZ28lMjUyMG1pbmltYWxpc3QlMjUyMGRhcmslMjUyMHZlY3RvcnxlbnwwfHx8fDE3NDk1NDUwOTB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Developer with headphones working on code"
+        class="absolute top-0 right-0 w-1/4 h-full object-cover opacity-5"
+        loading="lazy"
+      />
+      <img 
+        src="https://images.unsplash.com/photo-1622674777904-386b3ef30c4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8ZGV2ZWxvcGVyJTI1MjBmb290ZXIlMjUyMGxvZ28lMjUyMG1pbmltYWxpc3QlMjUyMGRhcmslMjUyMHZlY3RvcnxlbnwwfHx8fDE3NDk1NDUwOTB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+        alt="Team meeting discussing app development"
+        class="absolute bottom-0 left-0 w-1/3 h-2/3 object-cover opacity-5"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <!-- Main Footer Content -->
+      <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+        
+        <!-- Brand Section -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center">
+              <span class="text-white font-bold text-xl">SF</span>
+            </div>
+            <span class="text-2xl font-bold text-white">ScribbleFX</span>
+          </div>
+          
+          <p class="text-gray-400 mb-6 max-w-md">
+            The ultimate JavaScript library for creating stunning animated SVG underlines. 
+            Lightweight, powerful, and developer-friendly.
+          </p>
+          
+          <!-- Social Links -->
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 bg-neutral-800 hover:bg-orange-500 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300">
+              <span class="text-lg">📧</span>
+            </a>
+            <a href="#" class="w-10 h-10 bg-neutral-800 hover:bg-orange-500 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300">
+              <span class="text-lg">🐦</span>
+            </a>
+            <a href="#" class="w-10 h-10 bg-neutral-800 hover:bg-orange-500 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300">
+              <span class="text-lg">💬</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-3">
+              <li>
+                <a href="#docs" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">Documentation</a>
+              </li>
+              <li>
+                <a href="#github" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">GitHub Repository</a>
+              </li>
+              <li>
+                <a href="#license" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">License</a>
+              </li>
+              <li>
+                <a href="#support" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">Support</a>
+              </li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h3 class="text-white font-semibold mb-4">Resources</h3>
+          <ul class="space-y-3">
+            <li>
+              <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">Getting Started</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">API Reference</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">Examples</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">Community</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">Changelog</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="bg-neutral-800 rounded-2xl p-8 mb-12 border border-neutral-700">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="text-xl font-bold text-white mb-2">Stay Updated</h3>
+            <p class="text-gray-400">
+              Get notified about new releases, features, and developer tips.
+            </p>
+          </div>
+          
+          <div class="flex gap-3">
+            <input 
+              type="email" 
+              placeholder="Enter your email"
+              class="flex-1 px-4 py-3 bg-neutral-700 border border-neutral-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-orange-500 transition-colors duration-300"
+            />
+            <button class="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition-colors duration-300 whitespace-nowrap">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        <div class="text-center">
+          <div class="text-2xl font-bold text-orange-400 mb-1">5KB</div>
+          <div class="text-sm text-gray-400">Bundle Size</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-cyan-400 mb-1">12+</div>
+          <div class="text-sm text-gray-400">Animation Styles</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-purple-400 mb-1">2.8k</div>
+          <div class="text-sm text-gray-400">GitHub Stars</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold text-green-400 mb-1">99%</div>
+          <div class="text-sm text-gray-400">Browser Support</div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-neutral-800 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="text-gray-400 text-sm">
+            © 2024 ScribbleFX. All rights reserved. Built with ❤️ for developers.
+          </div>
+          
+          <div class="flex gap-6 text-sm">
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">Privacy Policy</a>
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">Terms of Service</a>
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Newsletter subscription
+        const subscribeBtn = document.querySelector('button');
+        const emailInput = document.querySelector('input[type="email"]');
+        
+        if (subscribeBtn && emailInput) {
+          subscribeBtn.addEventListener('click', function() {
+            const email = emailInput.value.trim();
+            
+            if (email && email.includes('@')) {
+              const originalText = this.textContent;
+              this.textContent = 'Subscribed!';
+              this.classList.add('bg-green-500');
+              this.classList.remove('bg-orange-500');
+              emailInput.value = '';
+              
+              setTimeout(() => {
+                this.textContent = originalText;
+                this.classList.remove('bg-green-500');
+                this.classList.add('bg-orange-500');
+              }, 3000);
+            } else {
+              emailInput.focus();
+              emailInput.classList.add('border-red-500');
+              
+              setTimeout(() => {
+                emailInput.classList.remove('border-red-500');
+              }, 2000);
+            }
+          });
+          
+          // Enter key support
+          emailInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+              subscribeBtn.click();
+            }
+          });
+        }
+        
+        // Smooth scroll for footer links
+        const footerLinks = document.querySelectorAll('footer a[href^="#"]');
+        footerLinks.forEach(link => {
+          link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+        
+        // Social link interactions
+        const socialLinks = document.querySelectorAll('footer a[href="#"]');
+        socialLinks.forEach(link => {
+          link.addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              this.style.transform = 'scale(1)';
+            }, 150);
+          });
+        });
+      });
+    </script>
+  </footer>
+</div></div></mountpoint>
+      </main>
+
+      <!-- Core functionality scripts -->
+      <script>
+        // Initialize interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+          // Add interactive behaviors
+          const interactiveElements = document.querySelectorAll('.interactive-element');
+          interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+              element.classList.add('hover');
+            });
+            element.addEventListener('mouseleave', () => {
+              element.classList.remove('hover');
+            });
+          });
+
+          // Initialize any dynamic content
+          const dynamicContent = document.querySelectorAll('[data-dynamic]');
+          dynamicContent.forEach(content => {
+            // Add fade-in animation
+            content.classList.add('fade-in');
+          });
+        });
+
+        // Handle navigation
+        function handleNavigation(event) {
+          const link = event.currentTarget;
+          if (link.hasAttribute('data-nav')) {
+            event.preventDefault();
+            const target = link.getAttribute('data-nav');
+            document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+
+        // Initialize navigation
+        document.querySelectorAll('[data-nav]').forEach(link => {
+          link.addEventListener('click', handleNavigation);
+        });
+      </script>
+
+      <!-- Body Scripts -->
+      <script id="body-scripts">
+        // This script tag will be replaced with actual scripts.body content
+        if (window.scripts && window.scripts.body) {
+          document.getElementById('body-scripts').outerHTML = window.scripts.body;
+        }
+      </script>
+   </body>
+</html>
