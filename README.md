@@ -64,7 +64,7 @@ Navigate to `http://localhost:8000`
 ```
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/https://github.com/Balatechcode/scribble-lib/scribble-svg.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Balatechcode/scribble-lib/scribble-svg.js"></script>
 ```
 
 ---
